@@ -1,0 +1,204 @@
+﻿body {
+  font-family: 'Roboto', Helvetica, Segoe UI;
+  background-color: #615373;
+  padding-bottom: 20px;
+  color: #fff;
+}
+
+a {
+    color: gold;
+}
+a:hover {
+    text-decoration: underline;
+    color: goldenrod;
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+h1 {
+  font-weight: 300;
+  color: #ddd;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 10px 0 40px;
+}
+
+footer p {
+    display: table;
+    padding: 10px 20px;
+    color: #768;
+    background: rgba(0,0,0,.2);
+    border-radius: 8px;
+}
+
+.flex {
+  display: flex;
+  /*flex-direction: column;*/
+}
+
+.gold {
+  color: gold !important;
+}
+
+
+/* Aside navigation block */
+.Aside__block {
+  position: fixed;
+  height: 100vh;
+  width: 60px;
+  background-color: #222;
+  padding: 0 !important;
+  margin: 0;
+  text-align: center;
+  z-index: 9999;
+}
+
+.Aside__block a {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  text-decoration: none;
+  color: #aaa;
+  transition: all 80ms ease;
+}
+
+.Aside__block a.here {
+  background-color: rgba(0,0,0, .5)
+}
+
+.Aside__block i {
+  margin: auto;
+}
+
+.Aside__block a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+}
+
+.Aside__block a:active {
+  text-decoration: none;
+  transform: scale(.9);
+}
+/* eof Aside navigation block */
+
+
+/* Header */
+.Header {
+  display: flex;
+  height: 100px;
+  padding: 0 0 20px 100px;
+  margin: 0;
+  color: gold;
+  font-weight: bold;
+  background-image: url(/Content/images/head.jpg);
+  background-size: cover;
+  align-items: flex-end;
+}
+
+.Header__logo {
+  padding: 10px;
+  width: 280px;
+  vertical-align: bottom;
+}
+
+.Header_right {
+  margin-left: auto;
+  padding-right: 20px;
+  font-size: 1.25em;
+}
+
+.Header__time {
+  margin-left: 40px;
+  color: white;
+  font-weight: normal;
+}
+/* eof Header */
+
+
+/* Content */
+.Content {
+  margin-left: 90px;
+  overflow-x: hidden;
+}
+
+.Content__title {
+  width: 100%;
+  padding: 40px 0 10px 20px;
+  margin-top: -20px;
+  margin-bottom: 40px;
+  font-size: 2em;
+  background-color: rgba(0,0,0, 0.2);
+}
+
+
+
+.btns {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+}
+
+.bigbtn {
+  display: flex;
+  height: 100px;
+  margin: 0 10px 10px 0;
+  color: white;
+  font-size: 1.35em;
+  font-weight: 300;
+  background-color: rgba(255,255,255, .1);
+  transition: all 120ms ease-in;
+  box-shadow: 0 1px 3px #333;
+}
+
+.bigbtn:hover,
+.bigbtn:focus {
+  color: gold;
+  background-color: rgba(255,255,255, .15);
+  text-decoration: none;
+}
+.bigbtn:active {
+  background-color: rgba(255,235,200, .3);
+  transform: scale(.95);
+  outline: none !important;
+}
+
+.bigbtn-half {
+  width: 50%;
+}
+
+.bigbtn-full {
+  width: 100%;
+}
+
+.bigbtn span {
+  margin: auto;
+}
+
+@media only screen and (min-width : 768px) {
+    .bigbtn { width: 100% !important }
+    .bigbtn-half { width: 100% }
+}
+
+/* eof Content */

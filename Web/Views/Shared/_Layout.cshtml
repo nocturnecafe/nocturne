@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Nocturne</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <!-- Aside navigation bar (static) -->
+    <aside class="Aside__block">
+        <a href="/" class="here" title="Home"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
+        <a href="/Client" title="Clients"><i class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></i></a>
+        <a href="/User" title="Users"><i class="fa fa-users fa-lg" aria-hidden="true"></i></a>
+        <a href="/Product" title="Products"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+        <a href="/Discount" title="Discounts"><i class="fa fa-tag fa-lg" aria-hidden="true"></i></a>
+        <a href="/DiscountType" title="Discount types"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></a>
+        <a href="/Account/Logoff" title="Sign In"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+    </aside>
+
+    <div class="Header container-fluid">
+        <img class="Header__logo" src="/Content/images/logo.png" alt="Logotype" />
+        <div class="Header_right">
+            <span class="Header__clients"><strong id="clients">10</strong> clients</span>
+            <span class="Header__time" id="time"></span>
+        </div>
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="display:none">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Symphony POSS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Clients", "Index", "Client")</li>
+                    <li>@Html.ActionLink("Users", "Index", "User")</li>
+                    <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                    <li>@Html.ActionLink("Discounts", "Index", "Discount")</li>
+                    <li>@Html.ActionLink("Discount Types", "Index", "DiscountType")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content Content">
+        <h1 class="Content__title">@ViewBag.Title</h1>
+        @RenderBody()
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Symphony No. 7 in C-sharp minor</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        // Timer
+        function checkTime(i) {
+          if (i < 10) {
+              i = "0" + i;
+          }
+          return i;
+        }
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            // add a zero in front of numbers<10
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('time').innerHTML = h + ":" + m;
+            t = setTimeout(function () {
+                startTime()
+            }, 500);
+        }
+        startTime();
+    </script>
+</body>
+</html>
