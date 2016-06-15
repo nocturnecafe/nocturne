@@ -5,30 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Nocturne.Common.Interfaces;
 
 namespace Nocturne.Web.Controllers
 {
     [Authorize]
     public class DiscountTypeController : Controller
     {
+        private readonly IUOW _uow;
+
+        public DiscountTypeController(IUOW uow)
+        {
+            _uow = uow;
+        }
+
+
         // GET: DiscountType
         public ActionResult Index()
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var discountTypes = service.GetAllDiscountTypes().OrderBy(c => c.Name);
-                return View(discountTypes);
-            }
+
+            var discountTypes = _uow.DiscountTypes.GetAllDiscountTypes().OrderBy(c => c.Name.Value);
+            return View(discountTypes);
         }
 
         // GET: DiscountType/Details/5
         public ActionResult Details(int id)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var discountType = service.GetDiscountType(id);
-                return View(discountType);
-            }
+
+            var discountType = _uow.DiscountTypes.GetDiscountType(id);
+            return View(discountType);
         }
 
         // GET: DiscountType/Create
@@ -44,20 +49,17 @@ namespace Nocturne.Web.Controllers
         {
             try
             {
-                using (var service = new NocturneServiceClient())
+                var validationResult = _uow.DiscountTypes.SaveDiscountType(discountType);
+                if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
-                    var validationResult = service.SaveDiscountType(discountType);
-                    if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
+                    foreach (var validationMessage in validationResult.Messages)
                     {
-                        foreach (var validationMessage in validationResult.Messages)
+                        foreach (var message in validationMessage.Value)
                         {
-                            foreach (var message in validationMessage.Value)
-                            {
-                                ModelState.AddModelError(validationMessage.Key, message.Message);
-                            }
+                            ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
-                        return View(discountType);
                     }
+                    return View(discountType);
                 }
                 return RedirectToAction("Index");
             }
@@ -71,11 +73,8 @@ namespace Nocturne.Web.Controllers
         // GET: DiscountType/Edit/5
         public ActionResult Edit(int id)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var discountType = service.GetDiscountType(id);
-                return View(discountType);
-            }
+            var discountType = _uow.DiscountTypes.GetDiscountType(id);
+            return View(discountType);
         }
 
         // POST: DiscountType/Edit/5
@@ -84,20 +83,17 @@ namespace Nocturne.Web.Controllers
         {
             try
             {
-                using (var service = new NocturneServiceClient())
+                var validationResult = _uow.DiscountTypes.SaveDiscountType(discountType);
+                if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
-                    var validationResult = service.SaveDiscountType(discountType);
-                    if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
+                    foreach (var validationMessage in validationResult.Messages)
                     {
-                        foreach (var validationMessage in validationResult.Messages)
+                        foreach (var message in validationMessage.Value)
                         {
-                            foreach (var message in validationMessage.Value)
-                            {
-                                ModelState.AddModelError(validationMessage.Key, message.Message);
-                            }
+                            ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
-                        return View(discountType);
                     }
+                    return View(discountType);
                 }
                 return RedirectToAction("Index");
             }

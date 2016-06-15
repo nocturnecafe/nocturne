@@ -8,8 +8,14 @@ namespace Nocturne.WcfService
     public interface INocturneService
     {
         [OperationContract]
-        void InitializeDatabase();
+        MultiLangString[] GetAllMultiLangStrings();
+        [OperationContract]
+        MultiLangString GetMultiLangStringById(int id);
 
+        [OperationContract]
+        Translation[] GetAllTranslations();
+        [OperationContract]
+        Translation GetTranslationByMultiLangStringId(int id, string culture);
 
         // Client
 

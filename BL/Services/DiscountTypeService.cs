@@ -1,4 +1,5 @@
-﻿using Nocturne.Common.Interfaces;
+﻿using System.Data.Entity;
+using Nocturne.Common.Interfaces;
 using Nocturne.Common.Models;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace Nocturne.BL.Services
         {
             using (var dc = new NocturneContext())
             {
-                return dc.DiscountTypes.Where(q => q.IsActive).ToArray();
+                return dc.DiscountTypes.Where(q => q.IsActive).Include(q => q.Name).ToArray();
             }
         }
 
@@ -18,7 +19,7 @@ namespace Nocturne.BL.Services
         {
             using (var dc = new NocturneContext())
             {
-                return dc.DiscountTypes.Where(p => p.Id == id).SingleOrDefault();
+                return dc.DiscountTypes.Where(p => p.Id == id).Include(q => q.Name).SingleOrDefault();
             }
         }
 
@@ -55,7 +56,7 @@ namespace Nocturne.BL.Services
         {
             var result = new ValidationResult<int>();
 
-            result.ValidateProperty((msg) => { return string.IsNullOrEmpty(type.Name) ? new ValidationErrorMessage(msg) : null; },
+            result.ValidateProperty((msg) => { return /*string.IsNullOrEmpty(type.Name)*/ type.Name == null ? new ValidationErrorMessage(msg) : null; },
                 "Name cannot be blank.",
                 nameof(type.Name));
 

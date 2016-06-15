@@ -36,6 +36,7 @@ namespace Nocturne.BL.Services
                 InitializeUsedProducts(dc);
             }
         }
+
         private void InitializeUsedProducts(NocturneContext dc)
         {
             if (!dc.UsedProducts.Any())
@@ -169,17 +170,17 @@ namespace Nocturne.BL.Services
             {
                 dc.DiscountTypes.Add(new DiscountType
                 {
-                    Name = "A modest discount",//new MultiLangString("A modest discount", "en", "A modest discount", "DiscountType"),
+                    Name = new MultiLangString("A modest discount", "en", "A modest discount", "DiscountType"),
                     IsActive = true,
                 });
                 dc.DiscountTypes.Add(new DiscountType
                 {
-                    Name = "Today's special!", //new MultiLangString("Today's special!", "en", "Today's special!", "DiscountType"),
+                    Name = new MultiLangString("Today's special!", "en", "Today's special!", "DiscountType"),
                     IsActive = true,
                 });
                 dc.DiscountTypes.Add(new DiscountType
                 {
-                    Name = "-50%! Everything goes!", //new MultiLangString("-50%! Everything goes!", "en", "-50%! Everything goes!", "DiscountType"),
+                    Name = new MultiLangString("-50%! Everything goes!", "en", "-50%! Everything goes!", "DiscountType"),
                     IsActive = true,
                 });
                 dc.SaveChanges();
@@ -192,48 +193,48 @@ namespace Nocturne.BL.Services
             {
                 dc.Products.Add(new Product
                 {
-                    Name = "Caesar Salad", //new MultiLangString("Caesar Salad", "en", "Caesar Salad", "Product"),
-                    Description = "Romaine with freshly made croutons, parmesan cheese, and our great caesar dressing", /*new MultiLangString(
+                    Name = new MultiLangString("Caesar Salad", "en", "Caesar Salad", "Product"),
+                    Description = new MultiLangString(
                         "Romaine with freshly made croutons, parmesan cheese, and our great caesar dressing", "en",
-                        "Romaine with freshly made croutons, parmesan cheese, and our great caesar dressing", "Product"),*/
+                        "Romaine with freshly made croutons, parmesan cheese, and our great caesar dressing", "Product"),
                     IsActive = true,
                     Price = 8
                 });
                 dc.Products.Add(new Product
                 {
-                    Name = "Whole Chicken", //new MultiLangString("Whole Chicken", "en", "Whole Chicken", "Product"),
-                    Description = "Total dinner with 3 sides", //new MultiLangString("Total dinner with 3 sides", "en", "Total dinner with 3 sides", "Product"),
+                    Name = new MultiLangString("Whole Chicken", "en", "Whole Chicken", "Product"),
+                    Description = new MultiLangString("Total dinner with 3 sides", "en", "Total dinner with 3 sides", "Product"),
                     IsActive = true,
                     Price = 27.5m
                 });
                 dc.Products.Add(new Product
                 {
-                    Name = "Chicken Ceasar Salad Wrap", //new MultiLangString("Chicken Ceasar Salad Wrap", "en", "Chicken Ceasar Salad Wrap", "Product"),
-                    Description = "In whole wheat tortilla", //new MultiLangString("In whole wheat tortilla", "en", "In whole wheat tortilla", "Product"),
+                    Name = new MultiLangString("Chicken Ceasar Salad Wrap", "en", "Chicken Ceasar Salad Wrap", "Product"),
+                    Description = new MultiLangString("In whole wheat tortilla", "en", "In whole wheat tortilla", "Product"),
                     Price = 12
                 });
                 dc.Products.Add(new Product
                 {
-                    Name = "Beef Chili", //new MultiLangString("Beef Chili", "en", "Beef Chili", "Product"),
-                    Description = "Chili con carne topped with cheese, served with rice and our fresh chips", /*new MultiLangString(
+                    Name = new MultiLangString("Beef Chili", "en", "Beef Chili", "Product"),
+                    Description = new MultiLangString(
                         "Chili con carne topped with cheese, served with rice and our fresh chips", "en",
-                        "Chili con carne topped with cheese, served with rice and our fresh chips", "Product"),*/
+                        "Chili con carne topped with cheese, served with rice and our fresh chips", "Product"),
                     IsActive = true,
                     Price = 14.5m
                 });
                 dc.Products.Add(new Product
                 {
-                    Name = "Tossed Salad", //new MultiLangString("Tossed Salad", "en", "Tossed Salad", "Product"),
-                    Description = "Tossed salad with chips and taco vinaigrette", /*new MultiLangString(
+                    Name = new MultiLangString("Tossed Salad", "en", "Tossed Salad", "Product"),
+                    Description = new MultiLangString(
                         "Tossed salad with chips and taco vinaigrette", "en",
-                        "Tossed salad with chips and taco vinaigrette", "Product"),*/
+                        "Tossed salad with chips and taco vinaigrette", "Product"),
                     IsActive = true,
                     Price = 9
                 });
                 dc.Products.Add(new Product
                 {
-                    Name = "Mineral water", //new MultiLangString("Mineral water", "en", "Mineral water", "Product"),
-                    Description = "Exceptionally good carbonized water", //new MultiLangString("Exceptionally good carbonized water", "en", "Exceptionally good carbonized water", "Product"),
+                    Name = new MultiLangString("Mineral water", "en", "Mineral water", "Product"),
+                    Description = new MultiLangString("Exceptionally good carbonized water", "en", "Exceptionally good carbonized water", "Product"),
                     IsActive = true,
                     Price = 2
                 });

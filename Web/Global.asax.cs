@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Nocturne.Web.ServiceReference;
+using DAL.WCF;
 using Nocturne.Web;
 
 namespace Web
@@ -14,11 +14,6 @@ namespace Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            using (var service = new NocturneServiceClient())
-            {
-                service.InitializeDatabase();
-            }
         }
 
         protected void Application_ResolveRequestCache()

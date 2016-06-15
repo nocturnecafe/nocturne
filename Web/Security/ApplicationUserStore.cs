@@ -5,7 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI.WebControls;
+using DAL.WCF;
 using Microsoft.AspNet.Identity;
+using Ninject;
+using Nocturne.Common.Interfaces;
 using Nocturne.Web.ServiceReference;
 using Web.Models;
 
@@ -13,6 +16,14 @@ namespace Nocturne.Web.Security
 {
     public class ApplicationUserStore : IUserStore<ApplicationUser>, IUserPasswordStore<ApplicationUser>, IUserLockoutStore<ApplicationUser, string>, IUserTwoFactorStore<ApplicationUser,string>
     {
+        private readonly IUOW _uow;
+        
+        public ApplicationUserStore()
+        {
+            _uow = new WcfUOW(); // TODO
+
+        }
+
         public Task CreateAsync(ApplicationUser user)
         {
             throw new NotSupportedException();
@@ -29,9 +40,9 @@ namespace Nocturne.Web.Security
 
         public Task<ApplicationUser> FindByIdAsync(string userId)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var client = service.GetAllUsers().FirstOrDefault(c => c.Id == int.Parse(userId));
+            //using (var service = new NocturneServiceClient())
+            //{
+                var client = _uow.Users.GetAllUsers().FirstOrDefault(c => c.Id == int.Parse(userId));
                 if (client == null)
                     return null;
                 return Task.FromResult(new ApplicationUser
@@ -39,14 +50,14 @@ namespace Nocturne.Web.Security
                     Id = client.Id.ToString(),
                     UserName = client.DisplayName
                 });
-            }
+            //}
         }
 
         public Task<ApplicationUser> FindByNameAsync(string userName)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var client = service.GetAllUsers().FirstOrDefault(c => c.RegCode == userName);
+            //using (var service = new NocturneServiceClient())
+            //{
+                var client = _uow.Users.GetAllUsers().FirstOrDefault(c => c.RegCode == userName);
                 if (client == null)
                     return null;
                 return Task.FromResult(new ApplicationUser
@@ -54,7 +65,7 @@ namespace Nocturne.Web.Security
                     Id = client.Id.ToString(),
                     UserName = client.DisplayName
                 });
-            }
+            //}
         }
 
         public Task<int> GetAccessFailedCountAsync(ApplicationUser user)
@@ -75,7 +86,7 @@ namespace Nocturne.Web.Security
         public Task<string> GetPasswordHashAsync(ApplicationUser user)
         {
             // System uses ID-card based authentication, so it doesn't have passwords.
-            // Couldn't get ID-card support to work on asp.net.
+            // No working ID-card support for asp.net.
             return Task.FromResult("superuser");
         }
 

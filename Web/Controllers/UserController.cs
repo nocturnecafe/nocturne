@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Nocturne.Common.Interfaces;
 using Nocturne.Common.Models;
 using Nocturne.Web.ServiceReference;
 
@@ -8,24 +9,26 @@ namespace Nocturne.Web.Controllers
     [Authorize]
     public class UserController : Controller
     {
+        private readonly IUOW _uow;
+
+        public UserController(IUOW uow)
+        {
+            _uow = uow;
+        }
+
+
         // GET: User
         public ActionResult Index()
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var users = service.GetAllUsers().OrderBy(c => c.Name);
-                return View(users);
-            }
+            var users = _uow.Users.GetAllUsers().OrderBy(c => c.Name);
+            return View(users);
         }
 
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var user = service.GetUser(id);
-                return View(user);
-            }
+            var user = _uow.Users.GetUser(id);
+            return View(user);
         }
 
         // GET: User/Create
@@ -41,20 +44,17 @@ namespace Nocturne.Web.Controllers
         {
             try
             {
-                using (var service = new NocturneServiceClient())
+                var validationResult = _uow.Users.SaveUser(user);
+                if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
-                    var validationResult = service.SaveUser(user);
-                    if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
+                    foreach (var validationMessage in validationResult.Messages)
                     {
-                        foreach (var validationMessage in validationResult.Messages)
+                        foreach (var message in validationMessage.Value)
                         {
-                            foreach (var message in validationMessage.Value)
-                            {
-                                ModelState.AddModelError(validationMessage.Key, message.Message);
-                            }
+                            ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
-                        return View(user);
                     }
+                    return View(user);
                 }
                 return RedirectToAction("Index");
             }
@@ -68,11 +68,9 @@ namespace Nocturne.Web.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var user = service.GetUser(id);
-                return View(user);
-            }
+
+            var user = _uow.Users.GetUser(id);
+            return View(user);
         }
 
         // POST: User/Edit/5
@@ -81,20 +79,17 @@ namespace Nocturne.Web.Controllers
         {
             try
             {
-                using (var service = new NocturneServiceClient())
+                var validationResult = _uow.Users.SaveUser(user);
+                if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
-                    var validationResult = service.SaveUser(user);
-                    if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
+                    foreach (var validationMessage in validationResult.Messages)
                     {
-                        foreach (var validationMessage in validationResult.Messages)
+                        foreach (var message in validationMessage.Value)
                         {
-                            foreach (var message in validationMessage.Value)
-                            {
-                                ModelState.AddModelError(validationMessage.Key, message.Message);
-                            }
+                            ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
-                        return View(user);
                     }
+                    return View(user);
                 }
                 return RedirectToAction("Index");
             }

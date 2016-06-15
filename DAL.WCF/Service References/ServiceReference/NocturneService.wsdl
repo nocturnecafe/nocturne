@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NocturneService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7960/NocturneService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7960/NocturneService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7960/NocturneService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Nocturne.Common.Models" />
+      <xsd:import schemaLocation="http://localhost:7960/NocturneService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="INocturneService_GetAllMultiLangStrings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMultiLangStrings" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllMultiLangStrings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMultiLangStringsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetMultiLangStringById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMultiLangStringById" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetMultiLangStringById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMultiLangStringByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllTranslations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTranslations" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllTranslations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTranslationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetTranslationByMultiLangStringId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationByMultiLangStringId" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetTranslationByMultiLangStringId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationByMultiLangStringIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllClients" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClient" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveClient" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProducts" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProduct" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveProduct" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllDiscountTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDiscountTypes" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllDiscountTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDiscountTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetDiscountType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountType" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetDiscountType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveDiscountType_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDiscountType" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveDiscountType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDiscountTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllDiscounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDiscounts" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllDiscounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDiscountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscount" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDiscount" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUser" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_SaveUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAvaliableRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvaliableRoles" />
+  </wsdl:message>
+  <wsdl:message name="INocturneService_GetAvaliableRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvaliableRolesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="INocturneService">
+    <wsdl:operation name="GetAllMultiLangStrings">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllMultiLangStrings" message="tns:INocturneService_GetAllMultiLangStrings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllMultiLangStringsResponse" message="tns:INocturneService_GetAllMultiLangStrings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMultiLangStringById">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetMultiLangStringById" message="tns:INocturneService_GetMultiLangStringById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetMultiLangStringByIdResponse" message="tns:INocturneService_GetMultiLangStringById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTranslations">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllTranslations" message="tns:INocturneService_GetAllTranslations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllTranslationsResponse" message="tns:INocturneService_GetAllTranslations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationByMultiLangStringId">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringId" message="tns:INocturneService_GetTranslationByMultiLangStringId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringIdResponse" message="tns:INocturneService_GetTranslationByMultiLangStringId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllClients" message="tns:INocturneService_GetAllClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllClientsResponse" message="tns:INocturneService_GetAllClients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetClient" message="tns:INocturneService_GetClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetClientResponse" message="tns:INocturneService_GetClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/SaveClient" message="tns:INocturneService_SaveClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/SaveClientResponse" message="tns:INocturneService_SaveClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllProducts" message="tns:INocturneService_GetAllProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllProductsResponse" message="tns:INocturneService_GetAllProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetProduct" message="tns:INocturneService_GetProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetProductResponse" message="tns:INocturneService_GetProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/SaveProduct" message="tns:INocturneService_SaveProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/SaveProductResponse" message="tns:INocturneService_SaveProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiscountTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllDiscountTypes" message="tns:INocturneService_GetAllDiscountTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllDiscountTypesResponse" message="tns:INocturneService_GetAllDiscountTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountType">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetDiscountType" message="tns:INocturneService_GetDiscountType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetDiscountTypeResponse" message="tns:INocturneService_GetDiscountType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDiscountType">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/SaveDiscountType" message="tns:INocturneService_SaveDiscountType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/SaveDiscountTypeResponse" message="tns:INocturneService_SaveDiscountType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiscounts">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllDiscounts" message="tns:INocturneService_GetAllDiscounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllDiscountsResponse" message="tns:INocturneService_GetAllDiscounts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetDiscount" message="tns:INocturneService_GetDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetDiscountResponse" message="tns:INocturneService_GetDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/SaveDiscount" message="tns:INocturneService_SaveDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/SaveDiscountResponse" message="tns:INocturneService_SaveDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllUsers" message="tns:INocturneService_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllUsersResponse" message="tns:INocturneService_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetUser" message="tns:INocturneService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetUserResponse" message="tns:INocturneService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/SaveUser" message="tns:INocturneService_SaveUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/SaveUserResponse" message="tns:INocturneService_SaveUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvaliableRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAvaliableRoles" message="tns:INocturneService_GetAvaliableRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAvaliableRolesResponse" message="tns:INocturneService_GetAvaliableRoles_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_INocturneService" type="tns:INocturneService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllMultiLangStrings">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllMultiLangStrings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMultiLangStringById">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetMultiLangStringById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTranslations">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllTranslations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationByMultiLangStringId">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveClient">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/SaveClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProducts">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveProduct">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/SaveProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiscountTypes">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllDiscountTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountType">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetDiscountType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDiscountType">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/SaveDiscountType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiscounts">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllDiscounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscount">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDiscount">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/SaveDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/SaveUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvaliableRoles">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetAvaliableRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NocturneService">
+    <wsdl:port name="BasicHttpBinding_INocturneService" binding="tns:BasicHttpBinding_INocturneService">
+      <soap:address location="http://localhost:7960/NocturneService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

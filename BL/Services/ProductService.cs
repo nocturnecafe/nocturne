@@ -1,4 +1,5 @@
-﻿using Nocturne.Common.Interfaces;
+﻿using System.Data.Entity;
+using Nocturne.Common.Interfaces;
 using Nocturne.Common.Models;
 using System.Linq;
 
@@ -20,7 +21,7 @@ namespace Nocturne.BL.Services
         {
             using (var dc = new NocturneContext())
             {
-                return dc.Products.Where(q=> q.IsActive).ToArray();
+                return dc.Products.Where(q=> q.IsActive).Include(q => q.Name).Include(q => q.Description).ToArray();
             }
         }
 
@@ -28,7 +29,7 @@ namespace Nocturne.BL.Services
         {
             using (var dc = new NocturneContext())
             {
-                return dc.Products.Where(p => p.Id == id).SingleOrDefault();
+                return dc.Products.Where(p => p.Id == id).Include(q => q.Name).Include(q => q.Description).SingleOrDefault();
             }
         }
 
@@ -67,11 +68,11 @@ namespace Nocturne.BL.Services
             const string emptyErrorTemplate = "{0} cannot be blank.";
             var result = new ValidationResult<int>();
 
-            result.ValidateProperty((msg) => { return string.IsNullOrEmpty(product.Description) || product.Description.Trim().Length == 0 ? new ValidationErrorMessage(msg) : null; },
+            result.ValidateProperty((msg) => { return product.Description == null /*string.IsNullOrEmpty(product.Description) || product.Description.Trim().Length == 0*/ ? new ValidationErrorMessage(msg) : null; },
                 string.Format(emptyErrorTemplate, "Description"),
                 nameof(product.Description));
 
-            result.ValidateProperty((msg) => { return string.IsNullOrEmpty(product.Name) || product.Name.Trim().Length == 0 ? new ValidationErrorMessage(msg) : null; },
+            result.ValidateProperty((msg) => { return product.Name == null /* string.IsNullOrEmpty(product.Name) || product.Name.Trim().Length == 0*/ ? new ValidationErrorMessage(msg) : null; },
                string.Format(emptyErrorTemplate, "Name"),
                nameof(product.Name));
 

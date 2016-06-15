@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0986f436-cab4-4bca-b5a4-f652ef41a6f8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7960/NocturneService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NocturneService.disco" MetadataType="Disco" ID="f79fd1d0-3450-44ab-90d9-21e0c526fe58" SourceId="1" SourceUrl="http://localhost:7960/NocturneService.svc?disco" />
+    <MetadataFile FileName="NocturneService.xsd" MetadataType="Schema" ID="19037819-fa4b-48f3-9be7-e3e62f70663e" SourceId="1" SourceUrl="http://localhost:7960/NocturneService.svc?xsd=xsd3" />
+    <MetadataFile FileName="NocturneService1.xsd" MetadataType="Schema" ID="a1e4beb1-468d-43f3-a519-6857e663e19d" SourceId="1" SourceUrl="http://localhost:7960/NocturneService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NocturneService2.xsd" MetadataType="Schema" ID="bab16a13-6c71-469b-9ead-148262742aa7" SourceId="1" SourceUrl="http://localhost:7960/NocturneService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NocturneService3.xsd" MetadataType="Schema" ID="fc47f490-858b-4bd0-8675-795300ffc02a" SourceId="1" SourceUrl="http://localhost:7960/NocturneService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NocturneService.wsdl" MetadataType="Wsdl" ID="db235ec5-78a9-432f-a2b3-34b7078c07d6" SourceId="1" SourceUrl="http://localhost:7960/NocturneService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

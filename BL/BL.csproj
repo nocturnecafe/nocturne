@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nocturne.BL</RootNamespace>
     <AssemblyName>Nocturne.BL</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -19,6 +19,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +64,7 @@
     <Compile Include="Monitors\CertificateMonitor.cs" />
     <Compile Include="Monitors\RfidMonitor.cs" />
     <Compile Include="NocturneContext.cs" />
+    <Compile Include="NocturneInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\HelperServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -74,8 +76,10 @@
     <Compile Include="Services\DatabaseDataStore.cs" />
     <Compile Include="Services\DiscountService.cs" />
     <Compile Include="Services\DiscountTypeService.cs" />
+    <Compile Include="Services\MultiLangStringService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\SessionService.cs" />
+    <Compile Include="Services\TranslationService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

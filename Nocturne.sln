@@ -18,6 +18,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\Wc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{CD8458D0-9E15-4CA7-8A25-671C738A02B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.WCF", "DAL.WCF\DAL.WCF.csproj", "{7F7B92DE-783F-4366-8FD9-D2409A8315C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E88543CE-8281-42F4-9EE7-491FF70BB9B3} = {E88543CE-8281-42F4-9EE7-491FF70BB9B3}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +115,22 @@ Global
 		{CD8458D0-9E15-4CA7-8A25-671C738A02B4}.Release|x64.Build.0 = Release|Any CPU
 		{CD8458D0-9E15-4CA7-8A25-671C738A02B4}.Release|x86.ActiveCfg = Release|Any CPU
 		{CD8458D0-9E15-4CA7-8A25-671C738A02B4}.Release|x86.Build.0 = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|ARM.Build.0 = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|x64.Build.0 = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|ARM.Build.0 = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|x64.ActiveCfg = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|x64.Build.0 = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F7B92DE-783F-4366-8FD9-D2409A8315C4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,11 @@
 ﻿using Nocturne.Common.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using static System.Data.Entity.Database;
 
 namespace Nocturne.BL
 {
-    class NocturneContext : DbContext
+    public class NocturneContext : DbContext
     {
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
@@ -16,11 +17,21 @@ namespace Nocturne.BL
         public DbSet<DiscountType> DiscountTypes { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<UsedProduct> UsedProducts { get; set; }
+        public DbSet<MultiLangString> MultiLangStrings { get; set; }
+        public DbSet<Translation> Translations { get; set; }
+
+
+        public NocturneContext() : base("name=NocturneContext")
+        {
+            Database.SetInitializer(new NocturneInitializer());
+            Configuration.LazyLoadingEnabled = false;
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserRole>().HasKey(ur => new { ur.UserId, ur.RoleId });
+
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
     }

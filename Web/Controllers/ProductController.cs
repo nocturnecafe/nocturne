@@ -1,34 +1,32 @@
 ﻿using Nocturne.Common.Models;
-using Nocturne.Web.ServiceReference;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Nocturne.Common.Interfaces;
 
 namespace Nocturne.Web.Controllers
 {
     [Authorize]
     public class ProductController : Controller
     {
+        private readonly IUOW _uow;
+
+        public ProductController(IUOW uow)
+        {
+            _uow = uow;
+        }
+
         // GET: Product
         public ActionResult Index()
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var products = service.GetAllProducts().OrderBy(c => c.Name);
-                return View(products);
-            }
+            var products = _uow.Products.GetAllProducts().OrderBy(c => c.Name.Value);
+            return View(products);
         }
 
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var product = service.GetProduct(id);
-                return View(product);
-            }
+            var product = _uow.Products.GetProduct(id);
+            return View(product);
         }
 
         // GET: Product/Create
@@ -44,20 +42,17 @@ namespace Nocturne.Web.Controllers
         {
             try
             {
-                using (var service = new NocturneServiceClient())
+                var validationResult = _uow.Products.SaveProduct(product);
+                if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
-                    var validationResult = service.SaveProduct(product);
-                    if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
+                    foreach (var validationMessage in validationResult.Messages)
                     {
-                        foreach (var validationMessage in validationResult.Messages)
+                        foreach (var message in validationMessage.Value)
                         {
-                            foreach (var message in validationMessage.Value)
-                            {
-                                ModelState.AddModelError(validationMessage.Key, message.Message);
-                            }
+                            ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
-                        return View(product);
                     }
+                    return View(product);
                 }
                 return RedirectToAction("Index");
             }
@@ -71,11 +66,8 @@ namespace Nocturne.Web.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            using (var service = new NocturneServiceClient())
-            {
-                var product = service.GetProduct(id);
-                return View(product);
-            }
+            var product = _uow.Products.GetProduct(id);
+            return View(product);
         }
 
         // POST: Product/Edit/5
@@ -84,20 +76,17 @@ namespace Nocturne.Web.Controllers
         {
             try
             {
-                using (var service = new NocturneServiceClient())
+                var validationResult = _uow.Products.SaveProduct(product);
+                if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
-                    var validationResult = service.SaveProduct(product);
-                    if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
+                    foreach (var validationMessage in validationResult.Messages)
                     {
-                        foreach (var validationMessage in validationResult.Messages)
+                        foreach (var message in validationMessage.Value)
                         {
-                            foreach (var message in validationMessage.Value)
-                            {
-                                ModelState.AddModelError(validationMessage.Key, message.Message);
-                            }
+                            ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
-                        return View(product);
                     }
+                    return View(product);
                 }
                 return RedirectToAction("Index");
             }

@@ -1,4 +1,5 @@
-﻿using Nocturne.BL.Services;
+﻿using System;
+using Nocturne.BL.Services;
 using Nocturne.Common.Models;
 
 namespace Nocturne.WcfService
@@ -10,12 +11,6 @@ namespace Nocturne.WcfService
         public NocturneService()
         {
             _logger.Trace("Instance created");
-        }
-
-        public void InitializeDatabase()
-        {
-            _logger.Trace("InitializeDatabase");
-            new DatabaseDataStore().Initialize();
         }
 
         #region Client
@@ -44,7 +39,8 @@ namespace Nocturne.WcfService
 
         public Product[] GetAllProducts()
         {
-            return new ProductService().GetAllProducts();
+            Product[] p = new ProductService().GetAllProducts();
+            return p;
         }
 
         public Product GetProduct(int id)
@@ -118,7 +114,28 @@ namespace Nocturne.WcfService
         {
             return new UserService().GetAvaliableRoles();
         }
-
         #endregion User
+
+        public MultiLangString[] GetAllMultiLangStrings()
+        {
+            return new MultiLangStringService().GetAllMultiLangStrings();
+        }
+
+        public MultiLangString GetMultiLangStringById(int id)
+        {
+            return new MultiLangStringService().GetMultiLangStringById(id);
+        }
+
+        public Translation[] GetAllTranslations()
+        {
+            return new TranslationService().GetAllTranslations();
+        }
+
+        public Translation GetTranslationByMultiLangStringId(int id, string culture)
+        {
+            return new TranslationService().GetTranslationByMultiLangStringId(id, culture);
+        }
+
+        
     }
 }
