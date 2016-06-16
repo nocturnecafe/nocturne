@@ -8,6 +8,11 @@ namespace Nocturne.WcfService
     public interface INocturneService
     {
         [OperationContract]
+        int GetActiveSessionCount();
+        
+        // Translations
+
+        [OperationContract]
         MultiLangString[] GetAllMultiLangStrings();
         [OperationContract]
         MultiLangString GetMultiLangStringById(int id);

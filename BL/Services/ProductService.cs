@@ -21,7 +21,9 @@ namespace Nocturne.BL.Services
         {
             using (var dc = new NocturneContext())
             {
-                return dc.Products.Where(q=> q.IsActive).Include(q => q.Name).Include(q => q.Description).ToArray();
+                return dc.Products.Where(q=> q.IsActive)
+                    .Include(q => q.Name)
+                    .Include(q => q.Description).ToArray();
             }
         }
 
@@ -29,7 +31,9 @@ namespace Nocturne.BL.Services
         {
             using (var dc = new NocturneContext())
             {
-                return dc.Products.Where(p => p.Id == id).Include(q => q.Name).Include(q => q.Description).SingleOrDefault();
+                return dc.Products.Where(p => p.Id == id)
+                    .Include(q => q.Name).
+                    Include(q => q.Description).SingleOrDefault();
             }
         }
 

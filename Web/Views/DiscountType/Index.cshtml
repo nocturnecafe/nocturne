@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Nocturne.Common.Models.DiscountType>
+﻿@model Web.Models.DiscountTypeIndexViewModel
 
 @{
-    ViewBag.Title = "Discount types";
+    Model.Title = "Discount types";
 }
 
 <p>
@@ -10,15 +10,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.DiscountTypes.FirstOrDefault().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsActive)
+            @Html.DisplayNameFor(model => model.DiscountTypes.FirstOrDefault().IsActive)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.DiscountTypes) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name.Value)

@@ -18,6 +18,9 @@ namespace Nocturne.Common.Interfaces
         IDiscountTypeRepository DiscountTypes { get; }
         IDiscountRepository Discounts { get; }
         IUserRepository Users { get; }
+        IMultiLangStringRepository MultiLangStrings { get; }
+        ITranslationRepository Translations { get; }
+        ISessionRepository Sessions { get; }
 
     }
 }

@@ -2,12 +2,12 @@
 using System.Web.Mvc;
 using Nocturne.Common.Interfaces;
 using Nocturne.Common.Models;
-using Nocturne.Web.ServiceReference;
+using Web.Models;
 
 namespace Nocturne.Web.Controllers
 {
     [Authorize]
-    public class ClientController : Controller
+    public class ClientController : BaseController
     {
         private readonly IUOW _uow;
 
@@ -19,31 +19,31 @@ namespace Nocturne.Web.Controllers
         // GET: Client
         public ActionResult Index()
         {
-            var clients = _uow.Clients.GetAllClients().OrderBy(c => c.IdCode);
-            return View(clients);
+            var clients = _uow.Clients.GetAllClients().OrderBy(c => c.IdCode).ToArray();
+            return View(new ClientIndexViewModel() { Clients = clients});
         }
 
         // GET: Client/Details/5
         public ActionResult Details(int id)
         {
             var client = _uow.Clients.GetClient(id);
-            return View(client);
+            return View(new ClientCreateEditDetailsViewModel() { Client = client});
         }
 
         // GET: Client/Create
         public ActionResult Create()
         {
             var client = new Client();
-            return View(client);
+            return View(new ClientCreateEditDetailsViewModel() { Client = client});
         }
 
         // POST: Client/Create
         [HttpPost]
-        public ActionResult Create(Client client)
+        public ActionResult Create(ClientCreateEditDetailsViewModel vm)
         {
             try
             {
-                var validationResult = _uow.Clients.SaveClient(client);
+                var validationResult = _uow.Clients.SaveClient(vm.Client);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -53,7 +53,7 @@ namespace Nocturne.Web.Controllers
                             ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
                     }
-                    return View(client);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -61,23 +61,23 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            return View(client);
+            return View(vm);
         }
 
         // GET: Client/Edit/5
         public ActionResult Edit(int id)
         {
             var client = _uow.Clients.GetClient(id);
-            return View(client);
+            return View(new ClientCreateEditDetailsViewModel() {Client = client});
         }
 
         // POST: Client/Edit/5
         [HttpPost]
-        public ActionResult Edit(Client client)
+        public ActionResult Edit(ClientCreateEditDetailsViewModel vm)
         {
             try
             {
-                var validationResult = _uow.Clients.SaveClient(client);
+                var validationResult = _uow.Clients.SaveClient(vm.Client);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -87,7 +87,7 @@ namespace Nocturne.Web.Controllers
                             ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
                     }
-                    return View(client);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -95,7 +95,7 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            return View(client);
+            return View(vm);
         }
     }
 }

@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI.WebControls;
-using DAL.WCF;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Ninject;
 using Nocturne.Common.Interfaces;
-using Nocturne.Web.ServiceReference;
 using Web.Models;
 
 namespace Nocturne.Web.Security
@@ -20,7 +14,7 @@ namespace Nocturne.Web.Security
         
         public ApplicationUserStore()
         {
-            _uow = new WcfUOW(); // TODO
+            _uow = DependencyResolver.Current.GetService<IUOW>();
 
         }
 
@@ -40,8 +34,6 @@ namespace Nocturne.Web.Security
 
         public Task<ApplicationUser> FindByIdAsync(string userId)
         {
-            //using (var service = new NocturneServiceClient())
-            //{
                 var client = _uow.Users.GetAllUsers().FirstOrDefault(c => c.Id == int.Parse(userId));
                 if (client == null)
                     return null;
@@ -50,13 +42,10 @@ namespace Nocturne.Web.Security
                     Id = client.Id.ToString(),
                     UserName = client.DisplayName
                 });
-            //}
         }
 
         public Task<ApplicationUser> FindByNameAsync(string userName)
         {
-            //using (var service = new NocturneServiceClient())
-            //{
                 var client = _uow.Users.GetAllUsers().FirstOrDefault(c => c.RegCode == userName);
                 if (client == null)
                     return null;
@@ -65,7 +54,6 @@ namespace Nocturne.Web.Security
                     Id = client.Id.ToString(),
                     UserName = client.DisplayName
                 });
-            //}
         }
 
         public Task<int> GetAccessFailedCountAsync(ApplicationUser user)
@@ -85,8 +73,8 @@ namespace Nocturne.Web.Security
 
         public Task<string> GetPasswordHashAsync(ApplicationUser user)
         {
-            // System uses ID-card based authentication, so it doesn't have passwords.
-            // No working ID-card support for asp.net.
+            // System uses ID-card based authentication in other parts, so it doesn't have passwords.
+            // No working ID-card support for asp.net, seems to be a config hell.
             return Task.FromResult("superuser");
         }
 

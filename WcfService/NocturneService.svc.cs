@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Nocturne.BL.Services;
 using Nocturne.Common.Models;
 
@@ -136,6 +137,9 @@ namespace Nocturne.WcfService
             return new TranslationService().GetTranslationByMultiLangStringId(id, culture);
         }
 
-        
+        public int GetActiveSessionCount()
+        {
+            return new SessionService().Find(s => s.To == null).Count();
+        }
     }
 }

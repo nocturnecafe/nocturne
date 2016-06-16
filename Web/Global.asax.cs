@@ -18,7 +18,7 @@ namespace Web
 
         protected void Application_ResolveRequestCache()
         {
-            WebUtils.SetUserLocale("et", "et,en");
+            //WebUtils.SetUserLocale("et", "et,en");
         }
     }
 }

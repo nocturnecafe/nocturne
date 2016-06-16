@@ -24,7 +24,7 @@ namespace Nocturne.BL
         public NocturneContext() : base("name=NocturneContext")
         {
             Database.SetInitializer(new NocturneInitializer());
-            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false; // for serialization in WCF service, though it doesn't seem to work?
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Web.Models;
 
 namespace Web.Models
 {
 
-    public class LoginViewModel
+    public class LoginViewModel: ViewModelBase
     {
         [Required]
         [Display(Name = "Reg. code")]
@@ -16,6 +17,8 @@ namespace Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
     
 }

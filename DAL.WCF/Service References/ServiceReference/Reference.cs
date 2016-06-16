@@ -15,6 +15,12 @@ namespace DAL.WCF.ServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.INocturneService")]
     public interface INocturneService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetActiveSessionCount", ReplyAction="http://tempuri.org/INocturneService/GetActiveSessionCountResponse")]
+        int GetActiveSessionCount();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetActiveSessionCount", ReplyAction="http://tempuri.org/INocturneService/GetActiveSessionCountResponse")]
+        System.Threading.Tasks.Task<int> GetActiveSessionCountAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetAllMultiLangStrings", ReplyAction="http://tempuri.org/INocturneService/GetAllMultiLangStringsResponse")]
         Nocturne.Common.Models.MultiLangString[] GetAllMultiLangStrings();
         
@@ -161,6 +167,14 @@ namespace DAL.WCF.ServiceReference {
         
         public NocturneServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public int GetActiveSessionCount() {
+            return base.Channel.GetActiveSessionCount();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetActiveSessionCountAsync() {
+            return base.Channel.GetActiveSessionCountAsync();
         }
         
         public Nocturne.Common.Models.MultiLangString[] GetAllMultiLangStrings() {

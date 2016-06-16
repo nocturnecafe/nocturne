@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model Web.Models.ViewModelBase
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title | Nocturne</title>
+    <title>@Model.Title | Nocturne</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic'>
     @Styles.Render("~/Content/css")
@@ -26,7 +27,7 @@
     <div class="Header container-fluid">
         <img class="Header__logo" src="/Content/images/logo.png" alt="Logotype" />
         <div class="Header_right">
-            <span class="Header__clients"><strong id="clients">10</strong> clients</span>
+            <span class="Header__clients"><strong id="clients">@Model.ClientCount</strong> clients</span>
             <span class="Header__time" id="time"></span>
         </div>
     </div>
@@ -54,7 +55,7 @@
         </div>
     </div>
     <div class="container body-content Content">
-        <h1 class="Content__title">@ViewBag.Title</h1>
+        <h1 class="Content__title">@Model.Title</h1>
         @RenderBody()
         <footer>
             <p>&copy; @DateTime.Now.Year - Symphony No. 7 in C-sharp minor</p>

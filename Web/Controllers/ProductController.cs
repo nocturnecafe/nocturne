@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Web.Mvc;
 using Nocturne.Common.Interfaces;
+using Web.Models;
 
 namespace Nocturne.Web.Controllers
 {
     [Authorize]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IUOW _uow;
 
@@ -18,31 +19,31 @@ namespace Nocturne.Web.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var products = _uow.Products.GetAllProducts().OrderBy(c => c.Name.Value);
-            return View(products);
+            var products = _uow.Products.GetAllProducts().OrderBy(c => c.Name.Value).ToArray();
+            return View(new ProductIndexViewModel() {Products = products});
         }
 
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
             var product = _uow.Products.GetProduct(id);
-            return View(product);
+            return View(new ProductCreateEditDetailsViewModel() { Product = product });
         }
 
         // GET: Product/Create
         public ActionResult Create()
         {
             var product = new Product();
-            return View(product);
+            return View(new ProductCreateEditDetailsViewModel() { Product = product });
         }
 
         // POST: Product/Create
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(ProductCreateEditDetailsViewModel vm)
         {
             try
             {
-                var validationResult = _uow.Products.SaveProduct(product);
+                var validationResult = _uow.Products.SaveProduct(vm.Product);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -52,7 +53,7 @@ namespace Nocturne.Web.Controllers
                             ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
                     }
-                    return View(product);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -60,23 +61,23 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            return View(product);
+            return View(vm);
         }
 
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
             var product = _uow.Products.GetProduct(id);
-            return View(product);
+            return View(new ProductCreateEditDetailsViewModel() {Product = product });
         }
 
         // POST: Product/Edit/5
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(ProductCreateEditDetailsViewModel vm)
         {
             try
             {
-                var validationResult = _uow.Products.SaveProduct(product);
+                var validationResult = _uow.Products.SaveProduct(vm.Product);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -86,7 +87,7 @@ namespace Nocturne.Web.Controllers
                             ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
                     }
-                    return View(product);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -94,7 +95,7 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            return View(product);
+            return View(vm);
         }
 
     }

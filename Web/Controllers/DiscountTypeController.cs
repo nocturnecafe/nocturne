@@ -1,16 +1,13 @@
 ﻿using Nocturne.Common.Models;
-using Nocturne.Web.ServiceReference;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Nocturne.Common.Interfaces;
+using Web.Models;
 
 namespace Nocturne.Web.Controllers
 {
     [Authorize]
-    public class DiscountTypeController : Controller
+    public class DiscountTypeController : BaseController
     {
         private readonly IUOW _uow;
 
@@ -24,8 +21,8 @@ namespace Nocturne.Web.Controllers
         public ActionResult Index()
         {
 
-            var discountTypes = _uow.DiscountTypes.GetAllDiscountTypes().OrderBy(c => c.Name.Value);
-            return View(discountTypes);
+            var discountTypes = _uow.DiscountTypes.GetAllDiscountTypes().OrderBy(c => c.Name.Value).ToArray();
+            return View(new DiscountTypeIndexViewModel() { DiscountTypes = discountTypes });
         }
 
         // GET: DiscountType/Details/5
@@ -33,23 +30,23 @@ namespace Nocturne.Web.Controllers
         {
 
             var discountType = _uow.DiscountTypes.GetDiscountType(id);
-            return View(discountType);
+            return View(new DiscountTypeCreateEditDetailsViewModel() { DiscountType = discountType });
         }
 
         // GET: DiscountType/Create
         public ActionResult Create()
         {
             var discountType = new DiscountType();
-            return View(discountType);
+            return View(new DiscountTypeCreateEditDetailsViewModel() { DiscountType = discountType });
         }
 
         // POST: DiscountType/Create
         [HttpPost]
-        public ActionResult Create(DiscountType discountType)
+        public ActionResult Create(DiscountTypeCreateEditDetailsViewModel vm)
         {
             try
             {
-                var validationResult = _uow.DiscountTypes.SaveDiscountType(discountType);
+                var validationResult = _uow.DiscountTypes.SaveDiscountType(vm.DiscountType);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -59,7 +56,7 @@ namespace Nocturne.Web.Controllers
                             ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
                     }
-                    return View(discountType);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -67,23 +64,23 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            return View(discountType);
+            return View(vm);
         }
 
         // GET: DiscountType/Edit/5
         public ActionResult Edit(int id)
         {
             var discountType = _uow.DiscountTypes.GetDiscountType(id);
-            return View(discountType);
+            return View(new DiscountTypeCreateEditDetailsViewModel() { DiscountType = discountType });
         }
 
         // POST: DiscountType/Edit/5
         [HttpPost]
-        public ActionResult Edit(DiscountType discountType)
+        public ActionResult Edit(DiscountTypeCreateEditDetailsViewModel vm)
         {
             try
             {
-                var validationResult = _uow.DiscountTypes.SaveDiscountType(discountType);
+                var validationResult = _uow.DiscountTypes.SaveDiscountType(vm.DiscountType);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -93,7 +90,7 @@ namespace Nocturne.Web.Controllers
                             ModelState.AddModelError(validationMessage.Key, message.Message);
                         }
                     }
-                    return View(discountType);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -101,7 +98,7 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            return View(discountType);
+            return View(vm);
         }
     }
 }

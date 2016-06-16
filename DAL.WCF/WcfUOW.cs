@@ -33,7 +33,8 @@ namespace DAL.WCF
                 {typeof(IDiscountRepository), (serviceClient) => new DiscountRepository(serviceClient)},
                 {typeof(IUserRepository), (serviceClient) => new UserRepository(serviceClient)},
                 {typeof(IMultiLangStringRepository), (serviceClient) => new MultiLangStringRepository(serviceClient)},
-                {typeof(ITranslationRepository), (serviceClient) => new TranslationRepository(serviceClient)}
+                {typeof(ITranslationRepository), (serviceClient) => new TranslationRepository(serviceClient)},
+                {typeof(ISessionRepository), (serviceClient) => new SessionRepository(serviceClient) }
 
             };
         }
@@ -79,6 +80,7 @@ namespace DAL.WCF
         public IUserRepository Users => GetRepository<IUserRepository>();
         public IMultiLangStringRepository MultiLangStrings => GetRepository<IMultiLangStringRepository>();
         public ITranslationRepository Translations => GetRepository<ITranslationRepository>();
+        public ISessionRepository Sessions => GetRepository<ISessionRepository>();
         
 
         public void Commit()

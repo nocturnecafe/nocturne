@@ -8,8 +8,7 @@ namespace DAL.WCF.Repositories
     {
         public Product[] GetAllProducts()
         {
-            Product [] p = Service.GetAllProducts();
-            return p;
+            return Service.GetAllProducts();
         }
 
         public Product GetProduct(int id)

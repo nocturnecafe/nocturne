@@ -1,7 +1,7 @@
-﻿@model Nocturne.Common.Models.Product
+﻿@model Web.Models.ProductCreateEditDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    Model.Title = "Details";
 }
 
 <div>
@@ -9,40 +9,40 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Product.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name.Value)
+            @Html.DisplayFor(model => model.Product.Name.Value)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Product.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description.Value)
+            @Html.DisplayFor(model => model.Product.Description.Value)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.Product.Price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Product.Price)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
+            @Html.DisplayNameFor(model => model.Product.IsActive)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsActive)
+            @Html.DisplayFor(model => model.Product.IsActive)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,7 +1,7 @@
-﻿@model Nocturne.Common.Models.Client
+﻿@model Web.Models.ClientCreateEditDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    Model.Title = "Details";
 }
 
 <h2>Details</h2>
@@ -11,32 +11,32 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Client.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Client.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Client.Surname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.Client.Surname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdCode)
+            @Html.DisplayNameFor(model => model.Client.IdCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdCode)
+            @Html.DisplayFor(model => model.Client.IdCode)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Client.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

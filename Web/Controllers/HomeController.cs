@@ -1,13 +1,14 @@
 ﻿using System.Web.Mvc;
+using Web.Models;
 
-namespace Web.Controllers
+namespace Nocturne.Web.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new HomeIndexViewModel());
         }
     }
 }

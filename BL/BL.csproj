@@ -73,7 +73,6 @@
     </Compile>
     <Compile Include="Services\CardService.cs" />
     <Compile Include="Services\ClientService.cs" />
-    <Compile Include="Services\DatabaseDataStore.cs" />
     <Compile Include="Services\DiscountService.cs" />
     <Compile Include="Services\DiscountTypeService.cs" />
     <Compile Include="Services\MultiLangStringService.cs" />

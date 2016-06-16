@@ -45,7 +45,6 @@
     <Compile Include="Interfaces\ICardService.cs" />
     <Compile Include="Interfaces\ICertificateMonitor.cs" />
     <Compile Include="Interfaces\IClientService.cs" />
-    <Compile Include="Interfaces\IDataStore.cs" />
     <Compile Include="Interfaces\IDiscountService.cs" />
     <Compile Include="Interfaces\IDiscountTypeService.cs" />
     <Compile Include="Interfaces\IMultiLangStringService.cs" />
@@ -62,6 +61,7 @@
     <Compile Include="Interfaces\Repositories\IDiscountTypeRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMultiLangStringRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProductRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ISessionRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITranslationRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUserRepository.cs" />
     <Compile Include="Models\Card.cs" />

@@ -1,13 +1,13 @@
 ﻿using Nocturne.Common.Interfaces;
 using Nocturne.Common.Models;
-using Nocturne.Web.ServiceReference;
 using System.Linq;
 using System.Web.Mvc;
+using Web.Models;
 
 namespace Nocturne.Web.Controllers
 {
     [Authorize]
-    public class DiscountController : Controller
+    public class DiscountController : BaseController
     {
         private readonly IUOW _uow;
 
@@ -25,7 +25,7 @@ namespace Nocturne.Web.Controllers
             var products = _uow.Products.GetAllProducts();
             discounts.ForEach(d => d.DiscountType = discountTypes.Single(dt => dt.Id == d.DiscountTypeId));
             discounts.ForEach(d => d.Product = products.Single(p => p.Id == d.ProductId));
-            return View(discounts.OrderBy(c => c.Id));
+            return View(new DiscountIndexViewModel() { Discounts = discounts.OrderBy(c => c.Id).ToArray() });
         }
 
         // GET: Discount/Details/5
@@ -36,24 +36,25 @@ namespace Nocturne.Web.Controllers
             var products = _uow.Products.GetAllProducts();
             discount.DiscountType = discountTypes.Single(dt => dt.Id == discount.DiscountTypeId);
             discount.Product = products.Single(p => p.Id == discount.ProductId);
-            return View(discount);
+            return View(new DiscountDetailsViewModel() { Discount = discount });
         }
 
         // GET: Discount/Create
         public ActionResult Create()
         {
             var discount = new Discount();
-            FillDropdowns();
-            return View(discount);
+            var vm = new DiscountCreateEditViewModel() { Discount = discount };
+            FillDropdowns(vm);
+            return View(vm);
         }
 
         // POST: Discount/Create
         [HttpPost]
-        public ActionResult Create(Discount discount)
+        public ActionResult Create(DiscountCreateEditViewModel vm)
         {
             try
             {
-                var validationResult = _uow.Discounts.SaveDiscount(discount);
+                var validationResult = _uow.Discounts.SaveDiscount(vm.Discount);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -64,9 +65,9 @@ namespace Nocturne.Web.Controllers
                         }
                     }
 
-                    FillDropdowns();
+                    FillDropdowns(vm);
 
-                    return View(discount);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -74,26 +75,26 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            FillDropdowns();
-            return View(discount);
+            FillDropdowns(vm);
+            return View(vm);
         }
 
         // GET: Discount/Edit/5
         public ActionResult Edit(int id)
         {
             var discount = _uow.Discounts.GetDiscount(id);
-            FillDropdowns();
-
-            return View(discount);
+            var vm = new DiscountCreateEditViewModel() { Discount = discount };
+            FillDropdowns(vm);
+            return View(vm);
         }
 
         // POST: Discount/Edit/5
         [HttpPost]
-        public ActionResult Edit(Discount discount)
+        public ActionResult Edit(DiscountCreateEditViewModel vm)
         {
             try
             {
-                var validationResult = _uow.Discounts.SaveDiscount(discount);
+                var validationResult = _uow.Discounts.SaveDiscount(vm.Discount);
                 if (validationResult.HasValidationMessageType<ValidationErrorMessage>())
                 {
                     foreach (var validationMessage in validationResult.Messages)
@@ -104,8 +105,8 @@ namespace Nocturne.Web.Controllers
                         }
                     }
 
-                    FillDropdowns();
-                    return View(discount);
+                    FillDropdowns(vm);
+                    return View(vm);
                 }
                 return RedirectToAction("Index");
             }
@@ -113,16 +114,16 @@ namespace Nocturne.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, "System error. Try again later.");
             }
-            FillDropdowns();
-            return View(discount);
+            FillDropdowns(vm);
+            return View(vm);
         }
 
-        private void FillDropdowns()
+        private void FillDropdowns(DiscountCreateEditViewModel vm)
         {
             var discountTypes = _uow.DiscountTypes.GetAllDiscountTypes();
-            ViewBag.DiscountTypeSelector = new SelectList(discountTypes, "Id", "Name.Value");
+            vm.DiscountTypeSelector = new SelectList(discountTypes, "Id", "Name.Value");
             var products = _uow.Products.GetAllProducts();
-            ViewBag.ProductsSelector = new SelectList(products, "Id", "Name.Value");
+            vm.ProductsSelector = new SelectList(products, "Id", "Name.Value");
         }
     }
 }

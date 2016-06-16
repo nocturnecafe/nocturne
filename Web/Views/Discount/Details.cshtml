@@ -1,7 +1,7 @@
-﻿@model Nocturne.Common.Models.Discount
+﻿@model Web.Models.DiscountDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    Model.Title = "Details";
 }
 
 <h2>Details</h2>
@@ -15,7 +15,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Product.Name.Value)
+            @Html.DisplayFor(model => model.Discount.Product.Name.Value)
         </dd>
 
         <dt>
@@ -23,28 +23,28 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DiscountType.Name.Value)
+            @Html.DisplayFor(model => model.Discount.DiscountType.Name.Value)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AmountPercent)
+            @Html.DisplayNameFor(model => model.Discount.AmountPercent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AmountPercent)
+            @Html.DisplayFor(model => model.Discount.AmountPercent)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
+            @Html.DisplayNameFor(model => model.Discount.IsActive)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsActive)
+            @Html.DisplayFor(model => model.Discount.IsActive)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Discount.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
