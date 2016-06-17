@@ -10,11 +10,11 @@ namespace Nocturne.BL.Services
 {
     public class TranslationService: ITranslationService
     {
-        public Translation GetTranslationByMultiLangStringId(int id, string culture)
+        public Translation[] GetTranslationsByMultiLangStringId(int id)
         {
             using (var dc = new NocturneContext())
             {
-                return dc.Translations.SingleOrDefault(s => s.MultiLangStringId == id && s.Culture.Equals(culture));
+                return dc.Translations.Where(t => t.MultiLangStringId == id).ToArray();
             }
         }
 

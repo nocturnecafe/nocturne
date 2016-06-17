@@ -9,7 +9,7 @@ namespace Nocturne.Common.Interfaces
 {
     public interface ITranslationService
     {
-        Translation GetTranslationByMultiLangStringId(int id, string culture);
+        Translation[] GetTranslationsByMultiLangStringId(int id);
         Translation[] GetAllTranslations();
     }
 }

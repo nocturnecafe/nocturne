@@ -19,8 +19,15 @@ namespace Nocturne.Web.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var products = _uow.Products.GetAllProducts().OrderBy(c => c.Name.Value).ToArray();
-            return View(new ProductIndexViewModel() {Products = products});
+            var products = _uow.Products.GetAllProducts().OrderBy(c => c.Name.Value).ToList();
+
+            products.ForEach(p => p.Name.Translations =
+                _uow.Translations.GetTranslationsByMultiLangStringId(p.Name.MultiLangStringId).ToList());
+
+            products.ForEach(p => p.Description.Translations =
+                _uow.Translations.GetTranslationsByMultiLangStringId(p.Description.MultiLangStringId).ToList());
+
+            return View(new ProductIndexViewModel() {Products = products.ToArray() });
         }
 
         // GET: Product/Details/5

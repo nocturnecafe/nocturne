@@ -8,23 +8,13 @@ namespace Nocturne.Common.Models
     {
         public int Id { get; set; }
 
-        /*[Required]
-        [Display(Name = "Product Name")]
-        [MaxLength(50)]
-        public string Name { get; set; }*/
-
         [ForeignKey("Name")]
-        [Display(Name = "Product name"/*, ResourceType = typeof(Resources.Domain)*/)]
+        [Display(Name = "ProductName", ResourceType = typeof(Resources.Resources))]
         public int NameId { get; set; }
         public MultiLangString Name { get; set; }
 
-
-        /*[Required]
-        [MaxLength(500)]
-        public string Description { get; set; }*/
-
         [ForeignKey("Description")]
-        [Display(Name = "Description"/*, ResourceType = typeof(Resources.Domain)*/)]
+        [Display(Name = "ProductDescription", ResourceType = typeof(Resources.Resources))]
         public int DescriptionId { get; set; }
         public MultiLangString Description { get; set; }
 

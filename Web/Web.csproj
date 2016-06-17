@@ -201,6 +201,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\DiscountTypeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -317,6 +318,10 @@
     <ProjectReference Include="..\DAL.WCF\DAL.WCF.csproj">
       <Project>{7f7b92de-783f-4366-8fd9-d2409a8315c4}</Project>
       <Name>DAL.WCF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{1ff91222-cc5b-4250-ae48-2770d09a0c17}</Project>
+      <Name>Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

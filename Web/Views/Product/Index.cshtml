@@ -27,10 +27,10 @@
 @foreach (var item in Model.Products) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name.Value)
+            @item.Name.Translate()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description.Value)
+            @item.Description.Translate()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)

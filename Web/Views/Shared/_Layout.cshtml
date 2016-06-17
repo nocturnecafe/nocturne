@@ -1,4 +1,10 @@
 ﻿@model Web.Models.ViewModelBase
+
+@{
+    var nameValueCollection = HttpUtility.ParseQueryString(Request?.Url?.Query ?? "");
+    nameValueCollection.Remove("culture");
+    string returnUrl = Request?.Url?.AbsolutePath + "?" + nameValueCollection;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +35,13 @@
         <div class="Header_right">
             <span class="Header__clients"><strong id="clients">@Model.ClientCount</strong> clients</span>
             <span class="Header__time" id="time"></span>
+        </div>
+        <div>
+
+            @Html.ActionLink("Est", "SetLanguage", new { area = "", controller = "Language", culture = "et", returnUrl }, htmlAttributes: new { id = "langLinkEst" })
+            @Html.ActionLink("Eng", "SetLanguage", new { area = "", controller = "Language", culture = "en", returnUrl }, htmlAttributes: new { id = "langLinkEng" })
+
+
         </div>
     </div>
 

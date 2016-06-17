@@ -20,7 +20,7 @@ namespace Nocturne.WcfService
         [OperationContract]
         Translation[] GetAllTranslations();
         [OperationContract]
-        Translation GetTranslationByMultiLangStringId(int id, string culture);
+        Translation[] GetTranslationsByMultiLangStringId(int id);
 
         // Client
 

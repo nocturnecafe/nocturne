@@ -7,18 +7,13 @@ namespace Nocturne.Common.Models
     {
         public int Id { get; set; }
 
-        /*[Required]
-        [Display(Name = "Discount Type")]
-        [MaxLength(50)]
-        public string Name { get; set; }*/
-
         [ForeignKey("Name")]
-        [Display(Name = "Discount Type Name"/*, ResourceType = typeof(Resources.Domain)*/)]
+        [Display(Name = "DiscountTypeName", ResourceType = typeof(Resources.Resources))]
         public int NameId { get; set; }
         public MultiLangString Name { get; set; }
 
 
-        [Display(Name = "is active")]
+        [Display(Name = "IsActive", ResourceType = typeof(Resources.Resources))]
         public bool IsActive { get; set; }   
 
     }

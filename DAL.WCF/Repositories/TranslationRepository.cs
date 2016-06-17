@@ -16,9 +16,9 @@ namespace DAL.WCF.Repositories
             return Service.GetAllTranslations();
         }
 
-        public Translation GetTranslationByMultiLangStringId(int id, string culture)
+        public Translation[] GetTranslationsByMultiLangStringId(int id)
         {
-            return Service.GetTranslationByMultiLangStringId(id, culture);
+            return Service.GetTranslationsByMultiLangStringId(id);
         }
 
         public TranslationRepository(NocturneServiceClient service): base(service)

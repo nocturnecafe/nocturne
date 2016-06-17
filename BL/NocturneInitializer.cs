@@ -7,11 +7,10 @@ using Nocturne.Common.Models;
 
 namespace Nocturne.BL
 {
-    public class NocturneInitializer : DropCreateDatabaseIfModelChanges<NocturneContext>
+    public class NocturneInitializer : /*DropCreateDatabaseAlways*/DropCreateDatabaseIfModelChanges<NocturneContext>
     {
         protected override void Seed(NocturneContext context)
         {
-
             var autoDetectChangesEnabled = context.Configuration.AutoDetectChangesEnabled;
             context.Configuration.AutoDetectChangesEnabled = false;
 
@@ -162,21 +161,45 @@ namespace Nocturne.BL
         {
             if (!dc.DiscountTypes.Any())
             {
-                dc.DiscountTypes.Add(new DiscountType
+                var dt = new DiscountType
                 {
                     Name = new MultiLangString("A modest discount", "en", "A modest discount", "DiscountType"),
                     IsActive = true,
+                };
+                dc.DiscountTypes.Add(dt);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Tagasihoidlik allahindlus",
+                    Culture = "et",
+                    MultiLangString = dt.Name
                 });
-                dc.DiscountTypes.Add(new DiscountType
+
+                dt = new DiscountType
                 {
                     Name = new MultiLangString("Today's special!", "en", "Today's special!", "DiscountType"),
                     IsActive = true,
+                };
+                dc.DiscountTypes.Add(dt);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Päeva eri!",
+                    Culture = "et",
+                    MultiLangString = dt.Name
                 });
-                dc.DiscountTypes.Add(new DiscountType
+
+                dt = new DiscountType
                 {
                     Name = new MultiLangString("-50%! Everything goes!", "en", "-50%! Everything goes!", "DiscountType"),
                     IsActive = true,
+                };
+                dc.DiscountTypes.Add(dt);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "-50%! Kõik müügiks!",
+                    Culture = "et",
+                    MultiLangString = dt.Name
                 });
+
                 dc.SaveChanges();
             }
         }
@@ -185,7 +208,7 @@ namespace Nocturne.BL
         {
             if (!dc.Products.Any())
             {
-                dc.Products.Add(new Product
+                var product = new Product
                 {
                     Name = new MultiLangString("Caesar Salad", "en", "Caesar Salad", "Product"),
                     Description = new MultiLangString(
@@ -193,21 +216,59 @@ namespace Nocturne.BL
                         "Romaine with freshly made croutons, parmesan cheese, and our great caesar dressing", "Product"),
                     IsActive = true,
                     Price = 8
+                };
+                dc.Products.Add(product);
+                dc.Translations.Add(new Translation() { Value = "Salat", Culture = "et", MultiLangString = product.Name });
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Värske salat",
+                    Culture = "et",
+                    MultiLangString = product.Description
                 });
-                dc.Products.Add(new Product
+
+
+                product = new Product
                 {
                     Name = new MultiLangString("Whole Chicken", "en", "Whole Chicken", "Product"),
                     Description = new MultiLangString("Total dinner with 3 sides", "en", "Total dinner with 3 sides", "Product"),
                     IsActive = true,
                     Price = 27.5m
+                };
+                dc.Products.Add(product);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Kana",
+                    Culture = "et",
+                    MultiLangString = product.Name
                 });
-                dc.Products.Add(new Product
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Täitsa suur praad",
+                    Culture = "et",
+                    MultiLangString = product.Description
+                });
+
+                product = new Product
                 {
                     Name = new MultiLangString("Chicken Ceasar Salad Wrap", "en", "Chicken Ceasar Salad Wrap", "Product"),
                     Description = new MultiLangString("In whole wheat tortilla", "en", "In whole wheat tortilla", "Product"),
                     Price = 12
+                };
+                dc.Products.Add(product);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Kana salat",
+                    Culture = "et",
+                    MultiLangString = product.Name
                 });
-                dc.Products.Add(new Product
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Koos jalgadega",
+                    Culture = "et",
+                    MultiLangString = product.Description
+                });
+
+                product = new Product
                 {
                     Name = new MultiLangString("Beef Chili", "en", "Beef Chili", "Product"),
                     Description = new MultiLangString(
@@ -215,8 +276,22 @@ namespace Nocturne.BL
                         "Chili con carne topped with cheese, served with rice and our fresh chips", "Product"),
                     IsActive = true,
                     Price = 14.5m
+                };
+                dc.Products.Add(product);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Liha",
+                    Culture = "et",
+                    MultiLangString = product.Name
                 });
-                dc.Products.Add(new Product
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Kergelt vürtsine",
+                    Culture = "et",
+                    MultiLangString = product.Description
+                });
+
+                product = new Product
                 {
                     Name = new MultiLangString("Tossed Salad", "en", "Tossed Salad", "Product"),
                     Description = new MultiLangString(
@@ -224,14 +299,42 @@ namespace Nocturne.BL
                         "Tossed salad with chips and taco vinaigrette", "Product"),
                     IsActive = true,
                     Price = 9
+                };
+                dc.Products.Add(product);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Veel üks salat",
+                    Culture = "et",
+                    MultiLangString = product.Name
                 });
-                dc.Products.Add(new Product
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Täitsa söödav",
+                    Culture = "et",
+                    MultiLangString = product.Description
+                });
+
+                product = new Product
                 {
                     Name = new MultiLangString("Mineral water", "en", "Mineral water", "Product"),
                     Description = new MultiLangString("Exceptionally good carbonized water", "en", "Exceptionally good carbonized water", "Product"),
                     IsActive = true,
                     Price = 2
+                };
+                dc.Products.Add(product);
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Mineraalvesi",
+                    Culture = "et",
+                    MultiLangString = product.Name
                 });
+                dc.Translations.Add(new Translation()
+                {
+                    Value = "Kergelt soolane",
+                    Culture = "et",
+                    MultiLangString = product.Description
+                });
+
                 dc.SaveChanges();
             }
         }

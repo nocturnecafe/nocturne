@@ -39,11 +39,11 @@ namespace DAL.WCF.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetAllTranslations", ReplyAction="http://tempuri.org/INocturneService/GetAllTranslationsResponse")]
         System.Threading.Tasks.Task<Nocturne.Common.Models.Translation[]> GetAllTranslationsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringId", ReplyAction="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringIdResponse")]
-        Nocturne.Common.Models.Translation GetTranslationByMultiLangStringId(int id, string culture);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringId", ReplyAction="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringIdResponse")]
+        Nocturne.Common.Models.Translation[] GetTranslationsByMultiLangStringId(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringId", ReplyAction="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringIdResponse")]
-        System.Threading.Tasks.Task<Nocturne.Common.Models.Translation> GetTranslationByMultiLangStringIdAsync(int id, string culture);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringId", ReplyAction="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringIdResponse")]
+        System.Threading.Tasks.Task<Nocturne.Common.Models.Translation[]> GetTranslationsByMultiLangStringIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INocturneService/GetAllClients", ReplyAction="http://tempuri.org/INocturneService/GetAllClientsResponse")]
         Nocturne.Common.Models.Client[] GetAllClients();
@@ -201,12 +201,12 @@ namespace DAL.WCF.ServiceReference {
             return base.Channel.GetAllTranslationsAsync();
         }
         
-        public Nocturne.Common.Models.Translation GetTranslationByMultiLangStringId(int id, string culture) {
-            return base.Channel.GetTranslationByMultiLangStringId(id, culture);
+        public Nocturne.Common.Models.Translation[] GetTranslationsByMultiLangStringId(int id) {
+            return base.Channel.GetTranslationsByMultiLangStringId(id);
         }
         
-        public System.Threading.Tasks.Task<Nocturne.Common.Models.Translation> GetTranslationByMultiLangStringIdAsync(int id, string culture) {
-            return base.Channel.GetTranslationByMultiLangStringIdAsync(id, culture);
+        public System.Threading.Tasks.Task<Nocturne.Common.Models.Translation[]> GetTranslationsByMultiLangStringIdAsync(int id) {
+            return base.Channel.GetTranslationsByMultiLangStringIdAsync(id);
         }
         
         public Nocturne.Common.Models.Client[] GetAllClients() {

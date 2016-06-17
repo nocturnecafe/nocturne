@@ -1,20 +1,20 @@
 ﻿@model Web.Models.HomeIndexViewModel
 @{
-    Model.Title = "Home";
+    Model.Title = Resources.Home;
 }
 
 <div class="row">
     <div class="col-md-11">
         <div class="btns">
-            <a href="/Client" class="bigbtn bigbtn-half"><span>Clients</span></a>
-            <a href="/User" class="bigbtn bigbtn-half"><span>Users</span></a>            
+            <a href="/Client" class="bigbtn bigbtn-half"><span>@Resources.Clients</span></a>
+            <a href="/User" class="bigbtn bigbtn-half"><span>@Resources.Users</span></a>            
         </div>
         <div class="btns">
-            <a href="/Discount" class="bigbtn bigbtn-half"><span>Discounts</span></a>
-            <a href="/DiscountType" class="bigbtn bigbtn-half"><span>Discount types</span></a>
+            <a href="/Discount" class="bigbtn bigbtn-half"><span>@Resources.Discounts</span></a>
+            <a href="/DiscountType" class="bigbtn bigbtn-half"><span>@Resources.DiscountTypes</span></a>
         </div>
         <div class="btns">
-            <a href="/Product" class="bigbtn bigbtn-full"><span>Products</span></a>
+            <a href="/Product" class="bigbtn bigbtn-full"><span>@Resources.Products</span></a>
         </div>
     </div><!-- eof .col-md-10 -->
 </div><!-- eof .row -->

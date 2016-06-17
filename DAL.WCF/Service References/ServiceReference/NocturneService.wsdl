@@ -32,11 +32,11 @@
   <wsdl:message name="INocturneService_GetAllTranslations_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllTranslationsResponse" />
   </wsdl:message>
-  <wsdl:message name="INocturneService_GetTranslationByMultiLangStringId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTranslationByMultiLangStringId" />
+  <wsdl:message name="INocturneService_GetTranslationsByMultiLangStringId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationsByMultiLangStringId" />
   </wsdl:message>
-  <wsdl:message name="INocturneService_GetTranslationByMultiLangStringId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTranslationByMultiLangStringIdResponse" />
+  <wsdl:message name="INocturneService_GetTranslationsByMultiLangStringId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationsByMultiLangStringIdResponse" />
   </wsdl:message>
   <wsdl:message name="INocturneService_GetAllClients_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllClients" />
@@ -151,9 +151,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllTranslations" message="tns:INocturneService_GetAllTranslations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetAllTranslationsResponse" message="tns:INocturneService_GetAllTranslations_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTranslationByMultiLangStringId">
-      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringId" message="tns:INocturneService_GetTranslationByMultiLangStringId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringIdResponse" message="tns:INocturneService_GetTranslationByMultiLangStringId_OutputMessage" />
+    <wsdl:operation name="GetTranslationsByMultiLangStringId">
+      <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringId" message="tns:INocturneService_GetTranslationsByMultiLangStringId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringIdResponse" message="tns:INocturneService_GetTranslationsByMultiLangStringId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllClients">
       <wsdl:input wsaw:Action="http://tempuri.org/INocturneService/GetAllClients" message="tns:INocturneService_GetAllClients_InputMessage" />
@@ -258,8 +258,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTranslationByMultiLangStringId">
-      <soap:operation soapAction="http://tempuri.org/INocturneService/GetTranslationByMultiLangStringId" style="document" />
+    <wsdl:operation name="GetTranslationsByMultiLangStringId">
+      <soap:operation soapAction="http://tempuri.org/INocturneService/GetTranslationsByMultiLangStringId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

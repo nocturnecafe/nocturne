@@ -2,6 +2,7 @@
 using System.Linq;
 using Nocturne.BL.Services;
 using Nocturne.Common.Models;
+using Nocturne.BL;
 
 namespace Nocturne.WcfService
 {
@@ -132,9 +133,9 @@ namespace Nocturne.WcfService
             return new TranslationService().GetAllTranslations();
         }
 
-        public Translation GetTranslationByMultiLangStringId(int id, string culture)
+        public Translation[] GetTranslationsByMultiLangStringId(int id)
         {
-            return new TranslationService().GetTranslationByMultiLangStringId(id, culture);
+            return new TranslationService().GetTranslationsByMultiLangStringId(id);
         }
 
         public int GetActiveSessionCount()

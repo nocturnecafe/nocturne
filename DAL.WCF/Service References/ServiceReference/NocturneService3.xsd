@@ -51,18 +51,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTranslationByMultiLangStringId">
+  <xs:element name="GetTranslationsByMultiLangStringId">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
-        <xs:element minOccurs="0" name="culture" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTranslationByMultiLangStringIdResponse">
+  <xs:element name="GetTranslationsByMultiLangStringIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nocturne.Common.Models" minOccurs="0" name="GetTranslationByMultiLangStringIdResult" nillable="true" type="q4:Translation" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nocturne.Common.Models" minOccurs="0" name="GetTranslationsByMultiLangStringIdResult" nillable="true" type="q4:ArrayOfTranslation" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
